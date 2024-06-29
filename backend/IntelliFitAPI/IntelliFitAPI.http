@@ -1,0 +1,6 @@
+@IntelliFitAPI_HostAddress = http://localhost:5139
+
+GET {{IntelliFitAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
