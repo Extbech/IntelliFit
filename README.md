@@ -1,2 +1,2 @@
 # IntelliFit
-Starrtup Project for an intelligent fitness app
+Startup Project for an intelligent fitness app
