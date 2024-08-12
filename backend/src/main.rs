@@ -12,7 +12,7 @@ use actix_web::{web, App, HttpServer};
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Starting server on 127.0.0.1:8080");
+    println!("Starting server on https://127.0.0.1:8080");
     HttpServer::new(|| {
         let cors = Cors::permissive();
         App::new().wrap(cors).service(

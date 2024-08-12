@@ -1,3 +1,4 @@
+use ts_rs::TS;
 use uuid::Uuid;
 
 /// Running modifiers for calories burned.
@@ -9,6 +10,8 @@ const SWIMMING_MODIFIER: f32 = 1.3;
 /// Cycling modifiers for calories burned.
 const CYCLING_MODIFIER: f32 = 0.9;
 
+#[derive(TS)]
+#[ts(export, export_to = "../../frontend/src/types/api/CardioExercise.ts")]
 /// Represents the different types of cardio workouts you can do.
 pub enum CardioExercise {
     Running,
