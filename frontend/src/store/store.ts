@@ -5,6 +5,7 @@ import themeReducer from './themeSlice';
 import { userApi } from './userSlice';
 import { cardioApi } from './cardioSlice';
 import { strengthApi } from './strengthSlice';
+import { dietApi } from './dietSlice';
 
 
 const persistConfig = {
@@ -18,12 +19,14 @@ export const store = configureStore({
   reducer: {
     theme: persistedReducer,
     [userApi.reducerPath]: userApi.reducer,
+    [dietApi.reducerPath]: dietApi.reducer,
     [cardioApi.reducerPath]: cardioApi.reducer,
     [strengthApi.reducerPath]: strengthApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       userApi.middleware,
+      dietApi.middleware,
       cardioApi.middleware,
       strengthApi.middleware
     ),
