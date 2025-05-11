@@ -10,30 +10,30 @@ import { CardioOverview } from "./pages/CardioOverview";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/IntelliFit",
     element: <Root />,
     errorElement: <NotFound />,
     children: [
       {
-        path: "/",
+        path: "/IntelliFit",
         element: <Dashboard />,
       },
       {
-        path: "/diet/overview",
+        path: "/IntelliFit/diet/overview",
         element: <DietOverview />,
       },
       {
-        path: "/strength/overview",
+        path: "/IntelliFit/strength/overview",
         element: <StrengthOverview />,
       },
       {
-        path: "/cardio/overview",
+        path: "/IntelliFit/cardio/overview",
         element: <CardioOverview />,
       },
     ],
   },
   {
-    path: "/login",
+    path: "/IntelliFit/login",
     element: <Login />,
   },
 ]);

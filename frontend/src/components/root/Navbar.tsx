@@ -21,13 +21,13 @@ export const Navbar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           IntelliFit
         </Typography>
-        <Button color="inherit" component={Link} to="/">
+        <Button color="inherit" component={Link} to="/IntelliFit">
           Home
         </Button>
-        <Button color="inherit" component={Link} to="/services">
+        <Button color="inherit" component={Link} to="/IntelliFit/services">
           Services
         </Button>
-        <Button color="inherit" component={Link} to="/login">
+        <Button color="inherit" component={Link} to="/IntelliFit/login">
           Login
         </Button>
         <IconButton edge="end" color="inherit" onClick={handleToggleTheme}>

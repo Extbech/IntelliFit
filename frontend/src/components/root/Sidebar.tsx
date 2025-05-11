@@ -20,13 +20,13 @@ export const Sidebar = () => {
     >
       <Box sx={{ overflow: "auto" }}>
         <List>
-          <ListItem button component={Link} to="/diet/overview">
+          <ListItem button component={Link} to="/IntelliFit/diet/overview">
             <ListItemText primary="Diet" />
           </ListItem>
-          <ListItem button component={Link} to="/strength/overview">
+          <ListItem button component={Link} to="/IntelliFit/strength/overview">
             <ListItemText primary="Strength" />
           </ListItem>
-          <ListItem button component={Link} to="/cardio/overview">
+          <ListItem button component={Link} to="/IntelliFit/cardio/overview">
             <ListItemText primary="Cardio" />
           </ListItem>
         </List>
