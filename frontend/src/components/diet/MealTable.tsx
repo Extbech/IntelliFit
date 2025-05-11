@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-export const MealTable = ({ foodItems }: { foodItems: unknown[] }) => {
+export const MealTable = () => {
   return (
     <Box
       sx={{
@@ -9,9 +9,7 @@ export const MealTable = ({ foodItems }: { foodItems: unknown[] }) => {
         flexDirection: "column",
       }}
     >
-      {foodItems.map((f) => {
-        return <div />;
-      })}
+      return <div />;
     </Box>
   );
 };
