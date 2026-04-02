@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import storageSession from 'redux-persist/lib/storage/session'
 import themeReducer from './themeSlice';
 import { userApi } from './userSlice';
 import { cardioApi } from './cardioSlice';
@@ -10,7 +10,7 @@ import { dietApi } from './dietSlice';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storageSession,
 };
 
 const persistedReducer = persistReducer(persistConfig, themeReducer);

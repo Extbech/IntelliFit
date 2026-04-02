@@ -27,9 +27,6 @@ export const Navbar = () => {
         <Button color="inherit" component={Link} to="/IntelliFit/services">
           Services
         </Button>
-        <Button color="inherit" component={Link} to="/IntelliFit/login">
-          Login
-        </Button>
         <IconButton edge="end" color="inherit" onClick={handleToggleTheme}>
           {mode === "light" ? <Brightness4 /> : <Brightness7 />}
         </IconButton>

@@ -1,4 +1,4 @@
-import { Box, Drawer, List, ListItem, ListItemText } from "@mui/material";
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const drawerWidth = "200px";
@@ -20,14 +20,20 @@ export const Sidebar = () => {
     >
       <Box sx={{ overflow: "auto" }}>
         <List>
-          <ListItem button component={Link} to="/IntelliFit/diet/overview">
-            <ListItemText primary="Diet" />
+          <ListItem component={Link} to="/IntelliFit/diet/overview">
+            <ListItemButton>
+              <ListItemText primary="Diet" />
+            </ListItemButton>
           </ListItem>
-          <ListItem button component={Link} to="/IntelliFit/strength/overview">
-            <ListItemText primary="Strength" />
+          <ListItem component={Link} to="/IntelliFit/strength/overview">
+            <ListItemButton>
+              <ListItemText primary="Strength" />
+            </ListItemButton>
           </ListItem>
-          <ListItem button component={Link} to="/IntelliFit/cardio/overview">
-            <ListItemText primary="Cardio" />
+          <ListItem component={Link} to="/IntelliFit/cardio/overview">
+            <ListItemButton>
+              <ListItemText primary="Cardio" />
+            </ListItemButton>
           </ListItem>
         </List>
       </Box>
