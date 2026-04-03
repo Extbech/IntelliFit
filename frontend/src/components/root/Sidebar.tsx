@@ -98,6 +98,26 @@ export const Sidebar = () => {
                   />
                 </ListItemButton>
               </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={NavLink}
+                  to="/IntelliFit/cardio/analytics"
+                  sx={{
+                    "&.active": {
+                      backgroundColor: "primary.light",
+                      color: "primary.contrastText",
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary="Analytics"
+                    sx={{ pl: 2 }}
+                    slotProps={{
+                      primary: { fontSize: "0.825rem", fontWeight: 400 },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
             </>
           )}
         </List>

@@ -17,10 +17,10 @@ import { useState, useMemo } from "react";
 import {
   useAddCardioWorkoutMutation,
   useGetCardioWorkoutsQuery,
-} from "../store/cardioSlice";
-import { CardioWorkoutItem } from "../components/cardio/CardioWorkoutItem";
-import { CardioWorkoutForm } from "../components/cardio/CardioWorkoutForm";
-import { CardioWorkoutRequest, WorkoutType } from "../types/api/cardio";
+} from "../../store/cardioSlice";
+import { CardioWorkoutItem } from "../../components/cardio/CardioWorkoutItem";
+import { CardioWorkoutForm } from "../../components/cardio/CardioWorkoutForm";
+import { CardioWorkoutRequest, WorkoutType } from "../../types/api/cardio";
 import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 
 export const CardioWorkouts = () => {

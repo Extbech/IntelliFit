@@ -13,14 +13,14 @@ import {
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   PieChart,
   Pie,
   Label,
+  Cell,
 } from "recharts";
-import { useGetCardioWorkoutsQuery } from "../store/cardioSlice";
+import { useGetCardioWorkoutsQuery } from "../../store/cardioSlice";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 import PoolIcon from "@mui/icons-material/Pool";
@@ -29,7 +29,7 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import TimerIcon from "@mui/icons-material/Timer";
 import RouteIcon from "@mui/icons-material/Route";
-import { calculatePace, calculateSpeed } from "../logic/cardioLogic";
+import { calculatePace, calculateSpeed } from "../../logic/cardioLogic";
 
 const workoutIcons: Record<string, React.ReactNode> = {
   Running: <DirectionsRunIcon />,
@@ -95,6 +95,14 @@ export const CardioDashboard = () => {
     totalDuration > 0 ? calculatePace(totalDuration, totalDistance) : 0;
 
   // Workout type distribution
+  const workoutTypeColors: Record<string, string> = {
+    Running: "#8884d8",
+    Cycling: "#82ca9d",
+    Swimming: "#ffc658",
+    Rowing: "#ff7f50",
+    Elliptical: "#00bcd4",
+  };
+
   const workoutTypeData = Object.entries(
     data.reduce(
       (acc, workout) => {
@@ -103,7 +111,11 @@ export const CardioDashboard = () => {
       },
       {} as Record<string, number>,
     ),
-  ).map(([type, count]) => ({ name: type, value: count }));
+  ).map(([type, count]) => ({
+    name: type,
+    value: count,
+    fill: workoutTypeColors[type] || "#a4de6c",
+  }));
 
   // Recent workouts (last 7)
   const recentWorkouts = data.slice(-7);
@@ -154,7 +166,7 @@ export const CardioDashboard = () => {
               </Avatar>
               <Box>
                 <Typography variant="h5" fontWeight="bold">
-                  {totalDistance.toFixed(1)}m
+                  {totalDistance.toFixed(1)}km
                 </Typography>
                 <Typography variant="body2">Total Distance</Typography>
               </Box>
@@ -208,7 +220,7 @@ export const CardioDashboard = () => {
         <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              Distance & Duration Trend
+              Distance Trend
             </Typography>
             <Box height={300}>
               <ResponsiveContainer width="100%" height="100%">
@@ -220,7 +232,7 @@ export const CardioDashboard = () => {
                     </Label>
                   </YAxis>
                   <Tooltip />
-                  <Bar dataKey="distance" fill="#8884d8" name="Distance (m)" />
+                  <Bar dataKey="distance" fill="#8884d8" name="Distance (km)" />
                 </BarChart>
               </ResponsiveContainer>
             </Box>
@@ -241,9 +253,12 @@ export const CardioDashboard = () => {
                     cy="50%"
                     labelLine={false}
                     outerRadius={80}
-                    fill="#8884d8"
                     dataKey="value"
-                  ></Pie>
+                  >
+                    {workoutTypeData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Pie>
                   <Tooltip />
                 </PieChart>
               </ResponsiveContainer>

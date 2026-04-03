@@ -5,8 +5,9 @@ import { Root } from "./pages/Root";
 import "./index.css";
 import { DietOverview } from "./pages/DietOverview";
 import { StrengthOverview } from "./pages/StrengthOverview";
-import { CardioDashboard } from "./pages/CardioDashboard";
-import { CardioWorkouts } from "./pages/CardioWorkouts";
+import { CardioDashboard } from "./pages/cardio/CardioDashboard";
+import { CardioWorkouts } from "./pages/cardio/CardioWorkouts";
+import { CardioAnalytics } from "./pages/cardio/CardioAnalytics";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "/IntelliFit/cardio/workouts",
         element: <CardioWorkouts />,
+      },
+      {
+        path: "/IntelliFit/cardio/analytics",
+        element: <CardioAnalytics />,
       },
     ],
   },
