@@ -6,9 +6,17 @@ export enum WorkoutType {
     Elliptical = "Elliptical",
 }
 
-export interface CardioWorkout {
+export interface CardioWorkoutResponse {
     id: number;
     workout_type: WorkoutType;
-    duration_minutes: number;
-    distance_km: number;
+    distance: number;
+    duration: number;
+    date: string; // ISO format date string
+}
+
+export interface CardioWorkoutRequest {
+    workout_type: WorkoutType;
+    distance: number;
+    duration: number;
+    date: string; // ISO format date string
 }

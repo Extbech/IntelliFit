@@ -20,7 +20,7 @@ export const NotFound = () => {
       <Typography variant="h6" sx={{ mb: 5 }}>
         Not Found
       </Typography>
-      <Button variant="contained" component={Link} to="/">
+      <Button variant="contained" component={Link} to="/Intellifit">
         Return Home
       </Button>
     </Box>

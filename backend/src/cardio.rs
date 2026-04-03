@@ -1,4 +1,3 @@
-use ts_rs::TS;
 use uuid::Uuid;
 
 /// Running modifiers for calories burned.
