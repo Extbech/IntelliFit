@@ -6,11 +6,13 @@ import {
   ListItemButton,
   ListItemText,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useLocation } from "react-router-dom";
 const drawerWidth = "200px";
 
 export const Sidebar = () => {
+  const location = useLocation();
+  const isCardioRoute = location.pathname.includes("/cardio");
+
   return (
     <Drawer
       variant="permanent"
@@ -33,7 +35,7 @@ export const Sidebar = () => {
               to="/IntelliFit/diet/overview"
               sx={{
                 "&.active": {
-                  backgroundColor: "primary.light",
+                  backgroundColor: "primary.dark",
                   color: "primary.contrastText",
                   fontWeight: 700,
                 },
@@ -48,7 +50,7 @@ export const Sidebar = () => {
               to="/IntelliFit/strength/overview"
               sx={{
                 "&.active": {
-                  backgroundColor: "primary.light",
+                  backgroundColor: "primary.dark",
                   color: "primary.contrastText",
                   fontWeight: 700,
                 },
@@ -60,10 +62,10 @@ export const Sidebar = () => {
           <ListItem disablePadding>
             <ListItemButton
               component={NavLink}
-              to="/IntelliFit/cardio/overview"
+              to="/IntelliFit/cardio"
               sx={{
                 "&.active": {
-                  backgroundColor: "primary.light",
+                  backgroundColor: "primary.dark",
                   color: "primary.contrastText",
                   fontWeight: 700,
                 },
@@ -72,6 +74,32 @@ export const Sidebar = () => {
               <ListItemText primary="Cardio" />
             </ListItemButton>
           </ListItem>
+
+          {/* Cardio sub-routes */}
+          {isCardioRoute && (
+            <>
+              <ListItem disablePadding>
+                <ListItemButton
+                  component={NavLink}
+                  to="/IntelliFit/cardio/workouts"
+                  sx={{
+                    "&.active": {
+                      backgroundColor: "primary.light",
+                      color: "primary.contrastText",
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary="Workouts"
+                    sx={{ pl: 2 }}
+                    slotProps={{
+                      primary: { fontSize: "0.825rem", fontWeight: 400 },
+                    }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </>
+          )}
         </List>
       </Box>
     </Drawer>

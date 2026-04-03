@@ -11,6 +11,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
+  Tooltip,
 } from "@mui/material";
 import { CardioWorkoutResponse } from "../../types/api/cardio";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
@@ -115,20 +116,22 @@ export const CardioWorkoutItem = (workout: CardioWorkoutResponse) => {
                   variant="outlined"
                 />
               </Box>
-              <IconButton
-                onClick={handleDeleteClick}
-                disabled={isDeleting}
-                size="small"
-                sx={{
-                  color: "error.main",
-                  "&:hover": {
-                    backgroundColor: "error.light",
-                    color: "error.contrastText",
-                  },
-                }}
-              >
-                <DeleteIcon fontSize="small" />
-              </IconButton>
+              <Tooltip title="Delete Workout" placement="top">
+                <IconButton
+                  onClick={handleDeleteClick}
+                  disabled={isDeleting}
+                  size="small"
+                  sx={{
+                    color: "error.main",
+                    "&:hover": {
+                      backgroundColor: "error.light",
+                      color: "error.contrastText",
+                    },
+                  }}
+                >
+                  <DeleteIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
             </Box>
 
             {/* Metrics Grid */}

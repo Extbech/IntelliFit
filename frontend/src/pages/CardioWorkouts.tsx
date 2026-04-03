@@ -1,7 +1,6 @@
 import {
   Box,
   Typography,
-  Button,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -11,6 +10,8 @@ import {
   MenuItem,
   SelectChangeEvent,
   Stack,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
 import { useState, useMemo } from "react";
 import {
@@ -20,8 +21,9 @@ import {
 import { CardioWorkoutItem } from "../components/cardio/CardioWorkoutItem";
 import { CardioWorkoutForm } from "../components/cardio/CardioWorkoutForm";
 import { CardioWorkoutRequest, WorkoutType } from "../types/api/cardio";
+import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRounded";
 
-export const CardioOverview = () => {
+export const CardioWorkouts = () => {
   const { data, isLoading, isError } = useGetCardioWorkoutsQuery();
   const [addCardioWorkout, { isLoading: isAdding, isError: isAddError }] =
     useAddCardioWorkoutMutation();
@@ -103,14 +105,15 @@ export const CardioOverview = () => {
                 </Select>
               </FormControl>
             </Stack>
-
-            <Button
-              variant="contained"
-              size="medium"
-              onClick={() => setDialogOpen(true)}
-            >
-              Add Workout
-            </Button>
+            <Tooltip title="Add New Workout" placement="top">
+              <IconButton
+                sx={{ color: "primary.main" }}
+                size="large"
+                onClick={() => setDialogOpen(true)}
+              >
+                <AddCircleOutlineRoundedIcon fontSize="large" />
+              </IconButton>
+            </Tooltip>
           </Box>
 
           <Dialog
