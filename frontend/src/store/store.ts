@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storageSession from 'redux-persist/lib/storage/session'
+import storage from 'redux-persist/es/storage';
 import themeReducer from './themeSlice';
 import { userApi } from './userSlice';
 import { cardioApi } from './cardioSlice';
@@ -8,10 +8,7 @@ import { strengthApi } from './strengthSlice';
 import { dietApi } from './dietSlice';
 
 
-const persistConfig = {
-  key: 'root',
-  storage: storageSession,
-};
+const persistConfig = { key: 'theme', storage };
 
 const persistedReducer = persistReducer(persistConfig, themeReducer);
 
@@ -24,7 +21,7 @@ export const store = configureStore({
     [strengthApi.reducerPath]: strengthApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
+    getDefaultMiddleware({serializableCheck: false}).concat(
       userApi.middleware,
       dietApi.middleware,
       cardioApi.middleware,
