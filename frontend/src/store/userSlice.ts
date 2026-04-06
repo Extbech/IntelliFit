@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseURL } from '../config/urlConfig';
 
-export const userApi = createApi({
+export const userAPI = createApi({
     reducerPath: 'userApi',
     baseQuery: fetchBaseQuery({ baseUrl: baseURL + '/api/user' }),
     endpoints: (builder) => ({
@@ -12,4 +12,4 @@ export const userApi = createApi({
     }),
 });
 
-export const { useGetUserInfoQuery } = userApi;
+export const { useGetUserInfoQuery } = userAPI;

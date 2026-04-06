@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   Typography,
   Dialog,
   DialogTitle,
@@ -64,7 +65,7 @@ export const CardioWorkouts = () => {
   }, [data, workoutTypeFilter]);
 
   return (
-    <Box sx={{ width: "70%" }}>
+    <Container maxWidth="md" sx={{ py: 4 }}>
       {isLoading && <Typography>Loading...</Typography>}
       {isError && <Typography>Error loading cardio data.</Typography>}
       {isAdding && <Typography>Saving workout...</Typography>}
@@ -139,6 +140,6 @@ export const CardioWorkouts = () => {
           ))}
         </Box>
       )}
-    </Box>
+    </Container>
   );
 };

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseURL } from '../config/urlConfig';
 import { CardioWorkoutRequest, CardioWorkoutResponse } from '../types/api/cardio';
 
-export const cardioApi = createApi({
+export const cardioAPI = createApi({
     reducerPath: 'cardioApi',
     baseQuery: fetchBaseQuery({ baseUrl: baseURL + '/api/cardio' }),
     tagTypes: ['CardioWorkout'],
@@ -22,7 +22,7 @@ export const cardioApi = createApi({
                 try {
                     const { data: newCardioWorkout } = await queryFulfilled;
                     dispatch(
-                        cardioApi.util.updateQueryData(
+                        cardioAPI.util.updateQueryData(
                             'getCardioWorkouts',
                             undefined,
                             (draft) => {
@@ -45,7 +45,7 @@ export const cardioApi = createApi({
                 try {
                     await queryFulfilled;
                     dispatch(
-                        cardioApi.util.updateQueryData(
+                        cardioAPI.util.updateQueryData(
                             'getCardioWorkouts',
                             undefined,
                             (draft) => {
@@ -63,4 +63,4 @@ export const cardioApi = createApi({
     }),
 });
 
-export const { useGetCardioWorkoutsQuery, useAddCardioWorkoutMutation, useDeleteCardioWorkoutMutation } = cardioApi;
+export const { useGetCardioWorkoutsQuery, useAddCardioWorkoutMutation, useDeleteCardioWorkoutMutation } = cardioAPI;

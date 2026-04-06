@@ -2,10 +2,10 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import themeReducer from './themeSlice';
-import { userApi } from './userSlice';
-import { cardioApi } from './cardioSlice';
-import { strengthApi } from './strengthSlice';
-import { dietApi } from './dietSlice';
+import { userAPI } from './userSlice';
+import { cardioAPI } from './cardioSlice';
+import { strengthAPI } from './strengthSlice';
+import { weightAPI } from './weightSlice';
 
 
 const persistConfig = { key: 'theme', storage };
@@ -15,17 +15,17 @@ const persistedReducer = persistReducer(persistConfig, themeReducer);
 export const store = configureStore({
   reducer: {
     theme: persistedReducer,
-    [userApi.reducerPath]: userApi.reducer,
-    [dietApi.reducerPath]: dietApi.reducer,
-    [cardioApi.reducerPath]: cardioApi.reducer,
-    [strengthApi.reducerPath]: strengthApi.reducer,
+    [userAPI.reducerPath]: userAPI.reducer,
+    [weightAPI.reducerPath]: weightAPI.reducer,
+    [cardioAPI.reducerPath]: cardioAPI.reducer,
+    [strengthAPI.reducerPath]: strengthAPI.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({serializableCheck: false}).concat(
-      userApi.middleware,
-      dietApi.middleware,
-      cardioApi.middleware,
-      strengthApi.middleware
+      userAPI.middleware,
+      weightAPI.middleware,
+      cardioAPI.middleware,
+      strengthAPI.middleware
     ),
 });
 

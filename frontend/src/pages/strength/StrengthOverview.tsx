@@ -1,9 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 export const StrengthOverview = () => {
   return (
-    <Box>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h4">Strength Tracker</Typography>
-    </Box>
+    </Container>
   );
 };

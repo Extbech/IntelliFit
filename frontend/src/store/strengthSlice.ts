@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { baseURL } from '../config/urlConfig';
 
-export const strengthApi = createApi({
+export const strengthAPI = createApi({
     reducerPath: 'strengthApi',
     baseQuery: fetchBaseQuery({ baseUrl: baseURL + '/api/strength' }),
     endpoints: (builder) => ({
@@ -13,4 +13,4 @@ export const strengthApi = createApi({
     }),
 });
 
-export const { useGetStrengthDataQuery } = strengthApi;
+export const { useGetStrengthDataQuery } = strengthAPI;

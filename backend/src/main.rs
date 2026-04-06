@@ -5,7 +5,7 @@ mod services;
 mod strength;
 
 // LOCAL IMPORTS
-use routes::{cardio_routes, diet_routes, strength_routes, user_routes};
+use routes::{cardio_routes, strength_routes, user_routes, weight_routes};
 
 // THIRD PARTY CRATE IMPORTS
 use actix_cors::Cors;
@@ -29,7 +29,7 @@ async fn main() -> std::io::Result<()> {
             .service(
                 web::scope("/api")
                     .service(web::scope("/user").configure(user_routes::user_scope_config))
-                    .service(web::scope("/diet").configure(diet_routes::diet_scope_config))
+                    .service(web::scope("/weight").configure(weight_routes::weight_scope_config))
                     .service(web::scope("/cardio").configure(cardio_routes::cardio_scope_config))
                     .service(
                         web::scope("/strength").configure(strength_routes::strength_scope_config),

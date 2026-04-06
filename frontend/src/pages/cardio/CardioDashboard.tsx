@@ -3,23 +3,13 @@ import {
   Card,
   CardContent,
   CircularProgress,
+  Container,
   Typography,
   Chip,
   Stack,
   Avatar,
 } from "@mui/material";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Label,
-  Cell,
-} from "recharts";
+import { BarChart, PieChart } from "@mui/x-charts";
 import { useGetCardioWorkoutsQuery } from "../../store/cardioSlice";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
@@ -112,23 +102,35 @@ export const CardioDashboard = () => {
       {} as Record<string, number>,
     ),
   ).map(([type, count]) => ({
-    name: type,
+    id: type,
     value: count,
-    fill: workoutTypeColors[type] || "#a4de6c",
+    label: type,
+    color: workoutTypeColors[type] || "#a4de6c",
   }));
+
+  const pieChartSeries = [
+    {
+      data: workoutTypeData,
+    },
+  ];
 
   // Recent workouts (last 7)
   const recentWorkouts = data.slice(-7);
 
   // Chart data for distance over time
-  const chartData = data.slice(-10).map((workout) => ({
-    date: new Date(workout.date).toLocaleDateString(),
-    distance: workout.distance,
-    duration: workout.duration / 60, // Convert to minutes
-  }));
+  const chartData = data.slice(-10);
+  const barChartXAxis = chartData.map((workout) =>
+    new Date(workout.date).toLocaleDateString(),
+  );
+  const barChartSeries = [
+    {
+      data: chartData.map((workout) => workout.distance),
+      label: "Distance (km)",
+    },
+  ];
 
   return (
-    <Box sx={{ p: 3, maxWidth: "1200px", mx: "auto" }}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Summary Cards */}
       <Box
         sx={{
@@ -223,18 +225,16 @@ export const CardioDashboard = () => {
               Distance Trend
             </Typography>
             <Box height={300}>
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
-                  <XAxis dataKey="date" />
-                  <YAxis dataKey="distance">
-                    <Label angle={270} style={{ textAnchor: "middle" }}>
-                      Distance (km)
-                    </Label>
-                  </YAxis>
-                  <Tooltip />
-                  <Bar dataKey="distance" fill="#8884d8" name="Distance (km)" />
-                </BarChart>
-              </ResponsiveContainer>
+              <BarChart
+                series={barChartSeries}
+                xAxis={[
+                  {
+                    data: barChartXAxis,
+                    scaleType: "band",
+                  },
+                ]}
+                height={300}
+              />
             </Box>
           </CardContent>
         </Card>
@@ -245,23 +245,7 @@ export const CardioDashboard = () => {
               Workout Types
             </Typography>
             <Box height={300}>
-              <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={workoutTypeData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    outerRadius={80}
-                    dataKey="value"
-                  >
-                    {workoutTypeData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.fill} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
+              <PieChart series={pieChartSeries} height={300} />
             </Box>
           </CardContent>
         </Card>
@@ -336,6 +320,6 @@ export const CardioDashboard = () => {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
+    </Container>
   );
 };

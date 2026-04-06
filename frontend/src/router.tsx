@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
-import { Dashboard } from "./pages/Dashboard";
+import { MainDashboard } from "./pages/MainDashboard";
 import { Root } from "./pages/Root";
 import "./index.css";
-import { DietOverview } from "./pages/DietOverview";
-import { StrengthOverview } from "./pages/StrengthOverview";
+import { WeightOverview } from "./pages/weight/WeightOverview";
+import { StrengthOverview } from "./pages/strength/StrengthOverview";
 import { CardioDashboard } from "./pages/cardio/CardioDashboard";
 import { CardioWorkouts } from "./pages/cardio/CardioWorkouts";
 import { CardioAnalytics } from "./pages/cardio/CardioAnalytics";
@@ -17,11 +17,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/IntelliFit",
-        element: <Dashboard />,
+        element: <MainDashboard />,
       },
       {
-        path: "/IntelliFit/diet/overview",
-        element: <DietOverview />,
+        path: "/IntelliFit/weight/overview",
+        element: <WeightOverview />,
       },
       {
         path: "/IntelliFit/strength/overview",

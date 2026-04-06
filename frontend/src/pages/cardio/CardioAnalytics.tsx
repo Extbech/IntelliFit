@@ -1,8 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 export const CardioAnalytics = () => {
   return (
-    <Box p={3}>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
       <Typography variant="h4" gutterBottom>
         Cardio Analytics
       </Typography>
@@ -11,6 +11,6 @@ export const CardioAnalytics = () => {
         workouts, including trends, performance metrics, and personalized
         recommendations.
       </Typography>
-    </Box>
+    </Container>
   );
 };

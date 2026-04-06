@@ -1,6 +1,9 @@
 use turso::Builder;
 
-use crate::services::database::cardio::init_cardio_table;
+use crate::services::database::{
+    cardio::init_cardio_table,
+    weight::{init_weight_table, seed_weight_data},
+};
 
 pub async fn connect() -> turso::Connection {
     let db = Builder::new_local("fit.db")
@@ -16,7 +19,8 @@ pub async fn connect() -> turso::Connection {
 
 pub async fn ensure_tables(conn: &turso::Connection) {
     ensure_users_table(conn).await;
-    ensure_diets_table(conn).await;
+    init_weight_table(conn).await;
+    seed_weight_data(conn).await;
     init_cardio_table(conn).await;
     ensure_strength_table(conn).await;
 }
@@ -33,21 +37,6 @@ async fn ensure_users_table(conn: &turso::Connection) {
     conn.execute(create_users_table, ())
         .await
         .expect("Failed to create users table");
-}
-
-async fn ensure_diets_table(conn: &turso::Connection) {
-    let create_diets_table = "
-        CREATE TABLE IF NOT EXISTS diets (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            name TEXT NOT NULL,
-            description TEXT,
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        );
-    ";
-    conn.execute(create_diets_table, ())
-        .await
-        .expect("Failed to create diets table");
 }
 
 async fn ensure_strength_table(conn: &turso::Connection) {

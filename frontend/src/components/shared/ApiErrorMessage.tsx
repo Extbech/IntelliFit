@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Alert, Box } from "@mui/material";
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
@@ -7,30 +7,21 @@ export const ApiErrorMessage = ({
 }: {
   error: FetchBaseQueryError | SerializedError;
 }) => {
-  if ("status" in error)
+  if ("status" in error) {
+    const errorMessage = "error" in error ? error.error : JSON.stringify(error.data);
     return (
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyItems: "center",
-        }}
-      >
-        <Typography
-          variant="h5"
-          gutterBottom
-          sx={{ color: (theme) => theme.palette.error.main }}
-        >
-          Something went wrong
-        </Typography>
-        <Typography
-          variant="h6"
-          sx={{ color: (theme) => theme.palette.error.main }}
-        >
-          {"error" in error ? error.error : JSON.stringify(error.data)}
-        </Typography>
+      <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
+        <Alert severity="error" sx={{ maxWidth: 500 }}>
+          {errorMessage}
+        </Alert>
       </Box>
     );
-  return <Typography>{error.message}</Typography>;
+  }
+  return (
+    <Box sx={{ display: "flex", justifyContent: "center", p: 2 }}>
+      <Alert severity="error" sx={{ maxWidth: 500 }}>
+        {error.message}
+      </Alert>
+    </Box>
+  );
 };

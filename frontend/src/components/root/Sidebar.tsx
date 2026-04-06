@@ -32,7 +32,7 @@ export const Sidebar = () => {
           <ListItem disablePadding>
             <ListItemButton
               component={NavLink}
-              to="/IntelliFit/diet/overview"
+              to="/IntelliFit/weight/overview"
               sx={{
                 "&.active": {
                   backgroundColor: "primary.dark",
@@ -41,7 +41,7 @@ export const Sidebar = () => {
                 },
               }}
             >
-              <ListItemText primary="Diet" />
+              <ListItemText primary="Weight" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>

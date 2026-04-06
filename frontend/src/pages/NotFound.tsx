@@ -1,14 +1,14 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 export const NotFound = () => {
   return (
-    <Box
+    <Container
       sx={{
-        height: "90vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        minHeight: "90vh",
       }}
     >
       <Typography variant="h3" gutterBottom>
@@ -23,6 +23,6 @@ export const NotFound = () => {
       <Button variant="contained" component={Link} to="/Intellifit">
         Return Home
       </Button>
-    </Box>
+    </Container>
   );
 };
